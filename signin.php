@@ -1,26 +1,37 @@
 <?php
-  require('connect.php');
+  require('connect.php'); //make connection here
     // If the values are posted, insert them into the database.
-    // if (isset($_POST['submit']))
+    if (isset($_POST['submit']))
     // {
     //   echo "<script type='text/javascript'>alert('submit');</script>";
     // }
-
-    if (isset($_POST['username']) && isset($_POST['password'])){
+    {
+      if (isset($_POST['username']) && isset($_POST['password'])){
         $username = mysqli_real_escape_string($connection,$_POST['username']);
-        $password = md5($_POST['password']);
-        ob_start();
+        // $password = md5($_POST['password']);
+        $password = $_POST['password'];
+        $check_username_query = "SELECT * FROM users WHERE username='$username'";
+        $run_query=mysqli_query($connection,$check_username_query);  
+  
+        if(mysqli_num_rows($run_query)>0)  
+        {  
+          echo "<script>alert('Username $username already exist in our database, Please try another one!')</script>";  
+          echo"<script>window.open('signin.php','_self')</script>";
+          exit();  
+        }  
+
+        // ob_start();
         $query = "INSERT INTO `users` (username, password) VALUES ('$username', '$password')";
         $result = mysqli_query($connection, $query);
         if($result)
         {
-          header('Location:index.php');
+          echo"<script>window.open('index.php','_self')</script>";
         }
         else
         {
           echo(" Error description: " . mysqli_error($connection));;
         }
-        ob_end_flush();
+        // ob_end_flush();
         // if($result){
         //     // $smsg = "User Created Successfully.";
         // echo "<script type='text/javascript'>console.log('Successfully');</script>";
@@ -32,6 +43,7 @@
         //     // $fmsg = "User Registration Failed";
         // }
     }
+  }
 ?>
 
 <!DOCTYPE html>
@@ -65,7 +77,7 @@
   <?php } ?> -->
 
 	<h2 style="text-align: center;">SIGN IN</h2>
-	<form method="POST" action="">
+	<form role="form" method="POST" action="signin.php">
     	<div class="form-group">
         <label for="username">Username:</label>
         <input type="text" name="username"  id="username" class="form-control" placeholder="Enter username"  required pattern="^[a-z0-9_-]{3,15}$" title="Must contain atleast 3 characters" >

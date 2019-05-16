@@ -1,42 +1,7 @@
 <?php  
 	//Start the Session
 	session_start();
-	 require('connect.php');
-	//3. If the form is submitted or not.
-	//3.1 If the form is submitted
-
-	if (isset($_POST['username']) and isset($_POST['password'])){
-	//3.1.1 Assigning posted values to variables.
-		$username = mysqli_real_escape_string($connection,$_POST['username']);
-		$password = md5($_POST['password']);
-	//3.1.2 Checking the values are existing in the database or not
-		$query = "SELECT * FROM `users` WHERE username='$username' and password='$password'";
-	 
-		$result = mysqli_query($connection, $query) or die(mysqli_error($connection));
-		$count = mysqli_num_rows($result);
-
-	// 3.1.2 If the posted values are equal to the database values, then session will be created for the user.
-		if ($count == 1){
-			$_SESSION['username'] = $username;
-		}
-		else{
-	// 3.1.3 If the login credentials doesn't match, he will be shown with an error message.
-			$fmsg = "Invalid Login Credentials.";
-		}
-	}
-	//3.1.4 if the user is logged in Greets the user with message
-	if (isset($_SESSION['username'])){
-		header('Location: index.php');
-		echo $_SESSION['username'];
-		//header('Location:'.$_SERVER['PHP_SELF']);
-		// echo "<script>window.history.go(-1);</script>";
-		// header('Location:index.php');
-		exit;
-	}
-	else{
-		//3.2 When the user visits the page first time, simple login form will be displayed.
-	}
-?>
+?>	
 
 <!DOCTYPE html>
 <html>
@@ -57,28 +22,51 @@
 <div class="container box">
 
 	<h2 style="text-align: center;">LOGIN</h2>
-	<form "action="index.html" method="POST">
+	<form role="form" "action="login.php" method="POST">
     	<!-- <div class="form-group">
       		<label for="email">Email:</label>
       		<input type="email" class="form-control" id="email" placeholder="Enter email" name="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
     	</div> -->
 
     	<div class="form-group">
- 			 <label for="usr">Username:</label>
- 			 <input type="text" class="form-control" id="usr" placeholder="Enter username" name="usr" required pattern="^[a-z0-9_-]{3,15}$" title="Must contain atleast 3 characters">
+ 			 <label for="username">Username:</label>
+ 			 <input type="text" class="form-control" id="username" placeholder="Enter username" name="username" required pattern="^[a-z0-9_-]{3,15}$" title="Must contain atleast 3 characters">
 		</div>
 
     	<div class="form-group">
-      		<label for="pwd">Password:</label>
-      		<input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd" required pattern="^[a-z0-9_-]{6,15}$" title="Must contain atleast 6 characters">
+      		<label for="password">Password:</label>
+      		<input type="password" class="form-control" id="password" placeholder="Enter password" name="password" required pattern="^[a-z0-9_-]{6,15}$" title="Must contain atleast 6 characters">
    	    </div>
 
    	    <a href="signin.php" class="anchor"><b>Create an account</b></a>
    	    <br>
-    	<button type="submit" class="btn btn-default btn-lg" style="background-color: #4162f6; color: white;">Login</button>
+    	<button name="login" type="submit" class="btn btn-default btn-lg" style="background-color: #4162f6; color: white;">Login</button>
 	</form>
 </div>
 
 </body>
-
 </html>
+
+<?php 
+    require('connect.php');
+	if(isset($_POST['login'])){
+			$username = mysqli_real_escape_string($connection,$_POST['username']);
+			// $password = md5($_POST['password']);
+			$password = $_POST['password'];
+			$query = "SELECT * FROM `users` WHERE username='$username' and password='$password'";  
+			$result = mysqli_query($connection, $query);
+			$count = mysqli_num_rows($result);
+			echo "<script>console.log($count);</script>";
+
+			if (mysqli_num_rows($result)){
+				echo "<script>window.open('index.php','_self')</script>"; 
+				$_SESSION['username'] = $username; //session is used
+			}
+			else{
+				echo "<script>alert('Invalid Login Credentials!')</script>";
+				echo "<script>window.open('login.php','_self')</script>"; 
+
+			}
+	}
+?>
+

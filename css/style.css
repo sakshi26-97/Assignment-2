@@ -124,6 +124,35 @@ body{
     font-size: 20px;
 }
 
+/*login*/
+
+.box{
+    width: 100%;
+    max-width:380px;
+    height: 370px;
+    /*max-height:370px;*/
+    background-color: #FFF;
+    margin: 40px auto;
+    padding: 20px;
+    font-size: 20px;
+}
+
+.anchor
+{
+    font-size: 18px;
+    float: right;
+}
+
+a:hover{
+    text-decoration: none;
+}
+
+.logout
+{
+    background-color: white;
+    color: black;
+}
+
 
 
 

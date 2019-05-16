@@ -1,13 +1,18 @@
 <?php
     session_start();
-    require('connect.php');
+    if(!$_SESSION['username'])  
+    {  
+  
+        header("Location: login.php");//redirect to login page to secure the todo page without login access.  
+    } 
+    // require('connect.php');
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>JavaScript - To Do List</title>
+    <title>To Do List</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
@@ -24,9 +29,8 @@
                 <!-- <i class="fa fa-refresh"></i> -->
                 <!-- <form action="logout.php"> -->
 
-            <a href="logout.php" class="btn logout" role="button">Logout</a>
-                    <!-- <button type="button" class="btn btn-default logout">Logout</button> -->
-                <!-- </form> -->
+            <a href="logout.php" class="btn" role="button" style="background-color: white; color: black; height: 50px; width: 100px; font-size: 25px; float: right; margin: 15px;">Logout</a>
+            <p style="color:white; float: right; margin: 15px; font-size: 30px;">Hi!&nbsp<?php echo $_SESSION['username'];  ?></p>
             </div>
             <div id="date"></div>
         </div>
