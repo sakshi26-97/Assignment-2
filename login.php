@@ -59,7 +59,7 @@
 			echo "<script>console.log($count);</script>";
 
 			if (mysqli_num_rows($result)){
-				echo "<script>window.open('index.php','_self')</script>"; 
+				echo "<script>window.open('todo.php','_self')</script>"; 
 				$_SESSION['username'] = $username; //session is used
 			}
 			else{

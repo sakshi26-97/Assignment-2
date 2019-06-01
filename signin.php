@@ -25,23 +25,12 @@
         $result = mysqli_query($connection, $query);
         if($result)
         {
-          echo"<script>window.open('index.php','_self')</script>";
+          echo"<script>window.open('todo.php','_self')</script>";
         }
         else
         {
           echo(" Error description: " . mysqli_error($connection));;
         }
-        // ob_end_flush();
-        // if($result){
-        //     // $smsg = "User Created Successfully.";
-        // echo "<script type='text/javascript'>console.log('Successfully');</script>";
-        // // echo "<script> window.location.assign('login.php'); </script>";
-        // header('Location:login.php');
-
-        // }else{
-        //   echo "<script type='text/javascript'>console.log('failed');</script>";
-        //     // $fmsg = "User Registration Failed";
-        // }
     }
   }
 ?>
@@ -63,19 +52,6 @@
 <body>
 
 <div class="container box">
-<!-- 
-  <?php if(isset($smsg)){ ?>
-    <div class="alert alert-success" role="alert"> 
-      <?php echo $smsg; ?> 
-      </div>
-  <?php } ?>
-
-  <?php if(isset($fmsg)){ ?>
-    <div class="alert alert-danger" role="alert"> 
-      <?php echo $fmsg; ?>
-       </div>
-  <?php } ?> -->
-
 	<h2 style="text-align: center;">SIGN IN</h2>
 	<form role="form" method="POST" action="signin.php">
     	<div class="form-group">

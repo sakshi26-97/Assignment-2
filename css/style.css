@@ -1,42 +1,39 @@
-
 body{
-    margin-top: 10px;
     background-color: rgba(0,0,0,0.1);
     font-family: 'Titillium Web', sans-serif;
-    width: 100%;
 }
 
-
-/* ------------ header ------------ */
-.header{
+/*.header{
     height:200px;
-    background-image: url('../img/todo.png');
     background-size: 100% 200%;
     background-repeat: no-repeat;
     border-radius: 15px 15px 0 0;
     position: relative;
 }
-
-
+*/
 #date{
-    position: absolute;
-    bottom: 10px;
-    left: 10px;
+    /*position: absolute;*/
+    /*bottom: 10px;*/
+    /*left: 10px;*/
     color: #FFF;
-    font-size: 25px;
+    font-size: 22px;
     font-family: 'Titillium Web', sans-serif;
+    margin-top: 8px;
+    margin-right: 20px;
 }
 
-/* ------------ content ------------ */
 .content{
-    height: 370px;
-    max-height:370px;
+    height: 500px;
+    max-height:500px;
+    width: 400px;
     background-color: #FFF;
     overflow: auto;
+    border-radius: 15px 15px 0 0;
+    margin: auto;
 }
 
 .item{
-    width: 96%;
+    width: 95%;
     height: 50px;
     min-height: 45px;
     max-width: 100%;
@@ -55,9 +52,9 @@ body{
     left:15px;
     top:10px;
 }
-.item i.co:hover{
+/*.item i.co:hover{
     cursor: pointer;
-}
+}*/
 .fa-check-circle{
     color: #6eb200;
 }
@@ -65,7 +62,7 @@ body{
 /*entered data*/
 .item p.text{
     position: absolute;
-    padding-left: 10px;
+    /*padding-left: 10px;*/
     margin:0;
     font-size: 20px;
     left:50px;
@@ -94,12 +91,13 @@ body{
 /* ------------ add item ------------ */
 .add-to-do{
     position: relative;
-    /*width: 360px;*/
+    margin: auto;
     height:60px;
     background-color: #FFF;
-    padding: 10px;
+    padding: 5px;
     border-top: 1px solid rgba(0,0,0,0.1);
-    box-shadow: 0px 12px 0px 0px #f2f2f2;
+    width: 400px;
+    margin-bottom: 10px;
 }
 
 .add-to-do i{
@@ -110,14 +108,15 @@ body{
 }
 
 .add-to-do input{
-    margin-left: 45px;
-    height: 35px;
-    width: 90%;
+    margin-left: 40px;
+    height: 40px;
     background-color: transparent;
     border: none;
     font-size: 20px;
     padding-left: 15px;
+    width:250px;
 }
+
 .add-to-do input::-webkit-input-placeholder {
     color: #4162f6;
     font-family: 'Titillium Web', sans-serif;
@@ -147,23 +146,20 @@ a:hover{
     text-decoration: none;
 }
 
+li a
+{
+    color: white; font-size: 20px;
+}
 
+.nav>li>a:focus, .nav>li>a:hover
+{
+    background-color: #337ab7;
+}
 
+a:hover{
+    color: #337ab7;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+li a:hover{
+    color: white;
+}

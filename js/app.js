@@ -1,8 +1,8 @@
-
 // Select the Elements
 const dateElement = document.getElementById("date");
 const list = document.getElementById("list");
 const input = document.getElementById("input");
+// const update = document.getElementById("update");
 
 // Classes names
 const CHECK = "fa-check-circle";
@@ -50,7 +50,7 @@ function addToDo(toDo, id, done, trash){
     
     const item = `<li class="item">
                     <i class="fa ${DONE} co" job="complete" id="${id}"></i>
-                    <p class="text ${LINE}">${toDo}</p>
+                    <p contenteditable="true" class="text ${LINE}"> ${toDo}</p>
                     <i class="fa fa-trash-o de" job="delete" id="${id}"></i>
                   </li>
                 `;
@@ -58,6 +58,19 @@ function addToDo(toDo, id, done, trash){
     const position = "beforeend";
     
     list.insertAdjacentHTML(position, item);
+
+     // if(toDo){
+     //        addToDo(toDo, id, false, false);
+            
+     //        LIST.push({
+     //            name : toDo,
+     //            id : id,
+     //            done : false,
+     //            trash : false
+     //        });
+            
+     //        // add item to localstorage ( this code must be added where the LIST array is updated)
+            localStorage.setItem("TODO", JSON.stringify(LIST));
 }
 
 // add an item to the list user the enter key
@@ -117,21 +130,3 @@ list.addEventListener("click", function(event){
     // add item to localstorage ( this code must be added where the LIST array is updated)
     localStorage.setItem("TODO", JSON.stringify(LIST));
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
